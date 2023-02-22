@@ -32,6 +32,7 @@ const config = {
             caughtErrorsIgnorePattern: "^_",
           },
         ],
+        "@typescript-eslint/no-misused-promises": "warn",
       },
     },
   ],
