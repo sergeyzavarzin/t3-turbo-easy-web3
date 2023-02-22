@@ -13,8 +13,6 @@
   },
   "dependencies": {
     "@acme/api": "*",
-    "@acme/auth": "*",
-    "@acme/db": "*",
     "@acme/tailwind-config": "*",
     "@tanstack/react-query": "^4.23.0",
     "@trpc/client": "^10.9.0",
@@ -22,10 +20,16 @@
     "@trpc/react-query": "^10.9.0",
     "@trpc/server": "^10.9.0",
     "next": "^13.1.6",
-    "next-auth": "^4.19.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "zod": "^3.20.2"
+    "zod": "^3.20.2",
+    "ethers": "^5.7.2",
+    "@walletconnect/client": "^1.8.0",
+    "@web3auth/core": "^4.6.0",
+    "@web3auth/base": "^4.6.0",
+    "@web3auth/modal": "^4.6.2",
+    "@web3auth/openlogin-adapter": "^4.6.0",
+    "firebase": "^9.17.1"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",

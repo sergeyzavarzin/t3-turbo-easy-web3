@@ -6,12 +6,10 @@
  * tl;dr - this is where all the tRPC server stuff is created and plugged in.
  * The pieces you will need to use are documented accordingly near the end
  */
-import { TRPCError, initTRPC } from "@trpc/server";
+import { initTRPC } from "@trpc/server";
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import superjson from "superjson";
 import { ZodError } from "zod";
-import { getServerSession, type Session } from "@acme/auth";
-import { prisma } from "@acme/db";
 
 /**
  * 1. CONTEXT
@@ -23,7 +21,7 @@ import { prisma } from "@acme/db";
  *
  */
 type CreateContextOptions = {
-  session: Session | null;
+  // session: Session | null;
 };
 
 /**
@@ -36,9 +34,9 @@ type CreateContextOptions = {
  * @see https://create.t3.gg/en/usage/trpc#-servertrpccontextts
  */
 const createInnerTRPCContext = (opts: CreateContextOptions) => {
+  console.log({ opts });
   return {
-    session: opts.session,
-    prisma,
+    // session: opts.session,
   };
 };
 
@@ -48,13 +46,16 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
  * @link https://trpc.io/docs/context
  */
 export const createTRPCContext = async (opts: CreateNextContextOptions) => {
-  const { req, res } = opts;
+  console.log({ opts });
+
+  await Promise.resolve(); // TODO: remove this shit =)
+  // const { req, res } = opts;
 
   // Get the session from the server using the unstable_getServerSession wrapper function
-  const session = await getServerSession({ req, res });
+  // const session = await getServerSession({ req, res });
 
   return createInnerTRPCContext({
-    session,
+    // session,
   });
 };
 
@@ -105,14 +106,15 @@ export const publicProcedure = t.procedure;
  * procedure
  */
 const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
-  if (!ctx.session?.user) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
-  }
+  // if (!ctx.session?.user) {
+  //   throw new TRPCError({ code: "UNAUTHORIZED" });
+  // }
   return next({
-    ctx: {
-      // infers the `session` as non-nullable
-      session: { ...ctx.session, user: ctx.session.user },
-    },
+    ctx,
+    // ctx: {
+    //   // infers the `session` as non-nullable
+    //   session: { ...ctx.session, user: ctx.session.user },
+    // },
   });
 });
 

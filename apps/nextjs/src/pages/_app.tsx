@@ -1,19 +1,14 @@
-import "../styles/globals.css";
 import type { AppType } from "next/app";
-import type { Session } from "next-auth";
-import { SessionProvider } from "next-auth/react";
-
+import { Web3AuthProvider } from "~/contexts/Web3AuthContext";
 import { api } from "~/utils/api";
+import "../styles/globals.css";
 
-const MyApp: AppType<{ session: Session | null }> = ({
-  Component,
-  pageProps: { session, ...pageProps },
-}) => {
+const App: AppType = ({ Component, pageProps: { ...pageProps } }) => {
   return (
-    <SessionProvider session={session}>
+    <Web3AuthProvider>
       <Component {...pageProps} />
-    </SessionProvider>
+    </Web3AuthProvider>
   );
 };
 
-export default api.withTRPC(MyApp);
+export default api.withTRPC(App);

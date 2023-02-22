@@ -29,8 +29,6 @@ apps
 packages
  ├─ api
  |   └─ tRPC v10 router definition
- ├─ auth
-     └─ authentication using next-auth. **NOTE: Only for Next.js app, not Expo**
  └─ db
      └─ typesafe db-calls using Prisma
 ```

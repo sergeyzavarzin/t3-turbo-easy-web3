@@ -1,5 +1,5 @@
 {
-  "name": "create-t3-turbo",
+  "name": "spirit-app",
   "private": true,
   "engines": {
     "node": ">=18.0.0"
@@ -12,6 +12,9 @@
     "db:generate": "turbo db:generate",
     "db:push": "turbo db:push db:generate",
     "dev": "turbo dev --parallel",
+    "dev:ios": "pnpm --filter expo dev:ios",
+    "dev:android": "pnpm --filter expo dev:android",
+    "dev:web": "pnpm --filter nextjs dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo lint && manypkg check",
     "type-check": "turbo type-check"
